@@ -23,9 +23,16 @@ export class EployersAddForm extends Component {
     return {
       ...this.state,
       increase: false,
-      like: false,
+      rise: false,
       id: uuidv4(),
     };
+  };
+
+  clearState = () => {
+    this.setState(() => ({
+      name: '',
+      salary: '',
+    }));
   };
 
   render() {
@@ -38,7 +45,9 @@ export class EployersAddForm extends Component {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            if (!name.trim() || !salary.trim()) return;
             onAdd(this.addEmployers());
+            this.clearState();
           }}
           className='add-form d-flex'
         >
